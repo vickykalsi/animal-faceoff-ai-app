@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animals Api</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="main-container lexend">
+    <form action="/" method="post" class="form-container">
+      <h1>Welcome to animals faceoff API !</h1>
+    <div class="input-container">
+      <label for="animal1">Enter first opponent :
+        <input type="text" id="animal1" autocomplete="off" name="animal1" class="lexend">
+      </label>
+      <p>VS</p>
+      <label for="animal2">Enter second opponent :
+        <input type="text" id="animal2" autocomplete="off" name="animal2" class="lexend">
+      </label>
+    </div>
+    <div class="button-container">
+      <button class="submit-btn lexend" type="submit">Submit</button>
+      <button class="clear-btn lexend" type="button">Clear analysis</button>
+    </div>
+    </form>
+  <h3>Faceoff analysis would be shown below :</h3>
+  <% if(outcome) {%>
+    <p class="outcome">
+      <%= outcome %>
+    </p>
+    <% } %>
+    </div>
+    <script>
+      const clearBtn = document.getElementsByClassName("clear-btn")[0];
+    clearBtn.addEventListener("click", () => {
+      const outcomeText = document.getElementsByClassName("outcome")[0];
+      outcomeText.style.visibility="hidden";
+    })
+  </script>
+</body>
+
+</html>

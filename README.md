@@ -1,0 +1,1 @@
+a simple app which takes user input and generates output by utilizing google's gemini ai api
