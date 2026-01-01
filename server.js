@@ -23,11 +23,16 @@ app.post("/", async (req, res) => {
   async function analyze() {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
-      contents: `${req.body.animal1} vs ${req.body.animal2} in a fight outcome in less than 100 words`,
+      contents: `${req.body.animal1} vs ${req.body.animal2} in a fight outcome in less than 150 words`,
     });
     outcome=response.text;
   }
   await analyze();
+  res.redirect("/");
+})
+
+app.post("/clear",(req,res)=>{
+  outcome="";
   res.redirect("/");
 })
 
