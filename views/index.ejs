@@ -13,34 +13,35 @@
 
 <body>
   <div class="main-container lexend">
-    <form method="post" class="form-container">
+    <form method="post" class="form-container" action="/outcome">
       <h1>Welcome to animals faceoff API !</h1>
-    <div class="input-container">
-      <label for="animal1">Enter first opponent :
-        <input type="text" id="animal1" autocomplete="off" name="animal1" class="lexend">
-      </label>
-      <p>VS</p>
-      <label for="animal2">Enter second opponent :
-        <input type="text" id="animal2" autocomplete="off" name="animal2" class="lexend">
-      </label>
-    </div>
-    <div class="button-container">
-      <button class="submit-btn lexend" type="submit" formaction="/">Submit</button>
-      <button class="clear-btn lexend" type="button" formaction="/clear">Clear analysis</button>
-    </div>
+      <div class="input-container">
+        <label for="animal1">Enter first opponent :
+          <input type="text" id="animal1" autocomplete="off" name="animal1" class="lexend">
+        </label>
+        <p>VS</p>
+        <label for="animal2">Enter second opponent :
+          <input type="text" id="animal2" autocomplete="off" name="animal2" class="lexend">
+        </label>
+      </div>
+      <div class="button-container">
+        <button class="submit-btn lexend" type="submit">Submit</button>
+        <button class="clear-btn lexend" type="button">Clear analysis</button>
+      </div>
     </form>
-  <h3>Faceoff analysis would be shown below :</h3>
-  <% if(outcome) {%>
-    <p class="outcome">
-      <%= outcome %>
-    </p>
-    <% } %>
-    </div>
-    <script>
-      const clearBtn = document.getElementsByClassName("clear-btn")[0];
+    <h3>Faceoff analysis would be shown below :</h3>
+    <% if(locals.outcome) {%>
+      <p class="outcome">
+        <%= outcome %>
+      </p>
+      <% } %>
+  </div>
+  <script>
+    const clearBtn = document.getElementsByClassName("clear-btn")[0];
     clearBtn.addEventListener("click", () => {
       const outcomeText = document.getElementsByClassName("outcome")[0];
-      outcomeText.style.visibility="hidden";
+      outcomeText.style.visibility = "hidden";
+      window.location.href = "/";
     })
   </script>
 </body>

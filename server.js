@@ -5,9 +5,8 @@ import { GoogleGenAI } from "@google/genai";
 dotenv.config();
 
 const app = express();
-const animals = [];
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-let outcome;
+const PORT = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 
@@ -16,26 +15,22 @@ app.use(express.json());
 app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
-  res.render("./index",{outcome});
+  res.render("index");
 })
 
-app.post("/", async (req, res) => {
+app.post("/outcome", async (req, res) => {
+  let outcome;
   async function analyze() {
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: `${req.body.animal1} vs ${req.body.animal2} in a fight outcome in less than 150 words`,
     });
-    outcome=response.text;
+    outcome = response.text;
   }
   await analyze();
-  res.redirect("/");
+  res.render("index", { outcome });
 })
 
-app.post("/clear",(req,res)=>{
-  outcome="";
-  res.redirect("/");
-})
-
-app.listen(3000, () => {
-  console.log("server is listening on port 3000");
+app.listen(PORT, () => {
+  console.log(`server is listening on port ${PORT}`);
 })
